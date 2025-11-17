@@ -18,29 +18,42 @@
   }
 
   body {
-    @apply antialiased;
+    @apply antialiased bg-slate-950 text-slate-50;
   }
 }
 
-/* Custom utility classes for shadcn/ui patterns */
+/* Animated utilities */
 @layer utilities {
-  .animate-in {
-    animation-name: animateIn;
-    animation-duration: 350ms;
-    --tw-enter-opacity: initial;
-    --tw-enter-scale: initial;
-    --tw-enter-rotate: initial;
-    --tw-enter-translate-x: initial;
-    --tw-enter-translate-y: initial;
+  .animate-aurora-slow {
+    animation: aurora 14s linear infinite;
   }
-
-  .animate-out {
-    animation-name: animateOut;
-    animation-duration: 350ms;
-    --tw-exit-opacity: initial;
-    --tw-exit-scale: initial;
-    --tw-exit-rotate: initial;
-    --tw-exit-translate-x: initial;
-    --tw-exit-translate-y: initial;
+  .animate-aurora-fast {
+    animation: aurora 7s linear infinite;
   }
 }
+
+@keyframes aurora {
+  0% { transform: translate(-10%, 0) rotate(10deg); }
+  25% { transform: translate(10%, -4%) rotate(14deg); }
+  50% { transform: translate(6%, 2%) rotate(8deg); }
+  75% { transform: translate(-6%, -2%) rotate(12deg); }
+  100% { transform: translate(-10%, 0) rotate(10deg); }
+}
+
+/* Floating glass blobs */
+.blob {
+  position: absolute;
+  width: 34rem;
+  height: 34rem;
+  border-radius: 9999px;
+  filter: blur(40px);
+  opacity: 0.35;
+  mix-blend-mode: screen;
+}
+.blob-1 { top: 10%; left: -8%; background: radial-gradient(circle at 30% 30%, #22d3ee, transparent 60%), radial-gradient(circle at 70% 70%, #a78bfa, transparent 60%); animation: float1 18s ease-in-out infinite; }
+.blob-2 { bottom: -10%; right: -6%; background: radial-gradient(circle at 30% 30%, #60a5fa, transparent 60%), radial-gradient(circle at 70% 70%, #34d399, transparent 60%); animation: float2 22s ease-in-out infinite; }
+.blob-3 { top: 40%; right: 30%; background: radial-gradient(circle at 30% 30%, #f472b6, transparent 60%), radial-gradient(circle at 70% 70%, #22d3ee, transparent 60%); animation: float3 26s ease-in-out infinite; }
+
+@keyframes float1 { 0%,100% { transform: translateY(0) translateX(0) scale(1);} 50% { transform: translateY(-16px) translateX(12px) scale(1.04);} }
+@keyframes float2 { 0%,100% { transform: translateY(0) translateX(0) scale(1);} 50% { transform: translateY(20px) translateX(-10px) scale(0.98);} }
+@keyframes float3 { 0%,100% { transform: translateY(0) translateX(0) scale(1);} 50% { transform: translateY(-10px) translateX(16px) scale(1.02);} }

@@ -1,4 +1,5 @@
 import { CheckCircle2 } from 'lucide-react'
+import { motion } from 'framer-motion'
 
 const items = [
   {
@@ -21,22 +22,29 @@ const items = [
 
 export default function Benefits() {
   return (
-    <section id="benefits" className="py-20 bg-gradient-to-b from-white to-gray-50">
+    <section id="benefits" className="py-24">
       <div className="max-w-6xl mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center">Why teams automate with us</h2>
-        <p className="text-gray-600 text-center mt-3 max-w-2xl mx-auto">Outcome-focused builds that pay for themselves within weeks.</p>
+        <h2 className="text-3xl md:text-4xl font-bold text-white text-center">Why teams automate with us</h2>
+        <p className="text-slate-300 text-center mt-3 max-w-2xl mx-auto">Outcome-focused builds that pay for themselves within weeks.</p>
 
         <div className="grid md:grid-cols-2 gap-6 mt-12">
-          {items.map((item) => (
-            <div key={item.title} className="p-6 rounded-xl border border-black/[0.06] bg-white">
+          {items.map((item, idx) => (
+            <motion.div
+              key={item.title}
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.5, delay: idx * 0.05 }}
+              className="p-6 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl"
+            >
               <div className="flex items-start gap-4">
-                <CheckCircle2 className="text-blue-600 mt-1" />
+                <CheckCircle2 className="text-sky-400 mt-1" />
                 <div>
-                  <h3 className="font-semibold text-gray-900">{item.title}</h3>
-                  <p className="text-gray-600 mt-1">{item.desc}</p>
+                  <h3 className="font-semibold text-white">{item.title}</h3>
+                  <p className="text-slate-300 mt-1">{item.desc}</p>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
